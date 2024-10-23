@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { Button } from "./ui/button";
 import Link from "next/link";
@@ -26,8 +28,18 @@ export const Hero = () => {
           adalah pilihan higienis dan ekonomis yang sempurna untuk seluruh
           keluarga.
         </p>
-        <Button asChild>
-          <Link href="/login">Beli Sekarang</Link>
+        <Button
+          onClick={() =>
+            fbq("track", "ViewContent", {
+              content_type: "product",
+              content_id: "12345",
+              content_name: "Tessa Multi Facial Tissue",
+              value: 1,
+              currency: "IDR",
+            })
+          }
+        >
+          <Link href="https://tokopedia.link/x95uLyyfTNb">Beli Sekarang</Link>
         </Button>
       </div>
 
