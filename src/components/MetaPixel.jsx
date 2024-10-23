@@ -6,15 +6,21 @@ import { useEffect } from "react";
 const MetaPixel = () => {
   useEffect(() => {
     if (typeof window !== "undefined") {
-      window.fbq =
-        window.fbq ||
-        function () {
+      if (!window.fbq) {
+        window.fbq = function () {
           window.fbq.callMethod
-            ? window.fbq.callMethod
+            ? window.fbq.callMethod.apply(window.fbq, arguments)
             : window.fbq.queue.push(arguments);
         };
-      window.fbq("init", "1641971290058186");
-      window.fbq("track", "PageView");
+        window.fbq.push = window.fbq;
+        window.fbq.loaded = true;
+        window.fbq.version = "2.0";
+        window.fbq.queue = [];
+
+        // Load Facebook Pixel script
+        window.fbq("init", "1641971290058186");
+        window.fbq("track", "PageView");
+      }
     }
   }, []);
 
