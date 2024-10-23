@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { Button } from "./ui/button";
-import Link from "next/link";
 import { great_vibes } from "@/app/font";
 import { useRouter } from "next/navigation";
 
