@@ -4,8 +4,11 @@ import Image from "next/image";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import { great_vibes } from "@/app/font";
+import { useRouter } from "next/navigation";
 
 export const Hero = () => {
+  const router = useRouter();
+
   return (
     <div
       className="flex items-center justify-between bg-center bg-no-repeat bg-cover px-8 min-h-screen"
@@ -29,17 +32,19 @@ export const Hero = () => {
           keluarga.
         </p>
         <Button
-          onClick={() =>
-            fbq("track", "ViewContent", {
+          onClick={() => {
+            window.fbq("track", "ViewContent", {
               content_type: "product",
               content_id: "12345",
               content_name: "Tessa Multi Facial Tissue",
               value: 1,
               currency: "IDR",
-            })
-          }
+            });
+            router.push("https://tokopedia.link/x95uLyyfTNb");
+            console.log("tracking");
+          }}
         >
-          <Link href="https://tokopedia.link/x95uLyyfTNb">Beli Sekarang</Link>
+          Beli Sekarang
         </Button>
       </div>
 
